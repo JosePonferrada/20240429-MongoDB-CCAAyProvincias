@@ -1,5 +1,8 @@
 package ccaaYProvincias.controladores;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bson.Document;
 
 import com.mongodb.client.FindIterable;
@@ -25,7 +28,7 @@ public class ControladorCCAA extends SuperControlador {
 		return instance;
 	}
 
-	private Ccaa findCCAAByCode(String code, MongoCollection<Document> col) {
+	public Ccaa findCCAAByCode(String code, MongoCollection<Document> col) {
 		
 		System.out.println("Filtrando elementos de una colección");
 		 
@@ -50,6 +53,25 @@ public class ControladorCCAA extends SuperControlador {
     	ccaa.setCode(doc.getString("code"));
     	ccaa.setLabel(doc.getString("label"));
     	return ccaa;
+    }
+	
+	public static List<Ccaa> getAllCcaa(MongoCollection<Document> col) {
+        System.out.println("Obteniendo todas las ccaa de la colección");
+ 
+        // Performing a read operation on the collection.
+        FindIterable<Document> fi = col.find();
+        MongoCursor<Document> cursor = fi.iterator();
+
+        List<Ccaa> allCcaa = new ArrayList<Ccaa>();
+        try {
+            while(cursor.hasNext()) {
+            	allCcaa.add(documentToCcaa(cursor.next()));
+            }
+        } finally {
+            cursor.close();
+        }
+        
+        return allCcaa;
     }
 	
 }

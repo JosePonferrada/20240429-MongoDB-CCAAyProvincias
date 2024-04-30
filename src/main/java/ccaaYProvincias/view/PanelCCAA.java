@@ -12,6 +12,8 @@ import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.Font;
+import javax.swing.ImageIcon;
 
 public class PanelCCAA extends JFrame {
 
@@ -54,6 +56,7 @@ public class PanelCCAA extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 		
 		JLabel lblGestinDeComunidades = new JLabel("Gestión de Comunidades Autónomas");
+		lblGestinDeComunidades.setFont(new Font("Cascadia Code", Font.BOLD, 14));
 		lblGestinDeComunidades.setBackground(new Color(204, 204, 204));
 		GridBagConstraints gbc_lblGestinDeComunidades = new GridBagConstraints();
 		gbc_lblGestinDeComunidades.gridwidth = 2;
@@ -98,6 +101,7 @@ public class PanelCCAA extends JFrame {
 		jtfCodigo.setColumns(10);
 		
 		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.setIcon(new ImageIcon(PanelCCAA.class.getResource("/ccaaYProvincias/res/guardar.png")));
 		GridBagConstraints gbc_btnGuardar = new GridBagConstraints();
 		gbc_btnGuardar.gridwidth = 2;
 		gbc_btnGuardar.insets = new Insets(0, 0, 0, 5);

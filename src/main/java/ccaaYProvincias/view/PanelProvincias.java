@@ -5,10 +5,17 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import ccaaYProvincias.controladores.ControladorCCAA;
+import ccaaYProvincias.controladores.SuperControlador;
+import ccaaYProvincias.entities.Ccaa;
+
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.util.List;
+
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -22,6 +29,9 @@ public class PanelProvincias extends JFrame {
 	private JPanel contentPane;
 	private JTextField jtfCode;
 	private JTextField jtfLabel;
+	private JComboBox<Ccaa> jcbCcaa;
+	private JButton btnVerCcaa;
+	private JButton btnGuardar;
 
 	/**
 	 * Launch the application.
@@ -108,7 +118,7 @@ public class PanelProvincias extends JFrame {
 		gbc_lblCcaa.gridy = 3;
 		contentPane.add(lblCcaa, gbc_lblCcaa);
 		
-		JComboBox jcbCcaa = new JComboBox();
+		jcbCcaa = new JComboBox<Ccaa>();
 		GridBagConstraints gbc_jcbCcaa = new GridBagConstraints();
 		gbc_jcbCcaa.insets = new Insets(0, 0, 5, 0);
 		gbc_jcbCcaa.fill = GridBagConstraints.HORIZONTAL;
@@ -116,7 +126,7 @@ public class PanelProvincias extends JFrame {
 		gbc_jcbCcaa.gridy = 3;
 		contentPane.add(jcbCcaa, gbc_jcbCcaa);
 		
-		JButton btnVerCcaa = new JButton("Ver CCAA");
+		btnVerCcaa = new JButton("Ver CCAA");
 		btnVerCcaa.setBackground(new Color(153, 193, 241));
 		GridBagConstraints gbc_btnVerCcaa = new GridBagConstraints();
 		gbc_btnVerCcaa.insets = new Insets(0, 0, 5, 0);
@@ -125,7 +135,7 @@ public class PanelProvincias extends JFrame {
 		gbc_btnVerCcaa.gridy = 5;
 		contentPane.add(btnVerCcaa, gbc_btnVerCcaa);
 		
-		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar = new JButton("Guardar");
 		btnGuardar.setIcon(new ImageIcon(PanelProvincias.class.getResource("/ccaaYProvincias/res/guardar.png")));
 		btnGuardar.setSelectedIcon(null);
 		GridBagConstraints gbc_btnGuardar = new GridBagConstraints();
@@ -134,6 +144,16 @@ public class PanelProvincias extends JFrame {
 		gbc_btnGuardar.gridx = 0;
 		gbc_btnGuardar.gridy = 7;
 		contentPane.add(btnGuardar, gbc_btnGuardar);
+	}
+	
+	private void loadInfoInPanel() {
+		
+		List<Ccaa> lista = (List<Ccaa>) ControladorCCAA
+				.getInstance().getAllCcaa();
+		for (Ccaa ts : lista) {
+			this.jcbCcaa.addItem(ts);
+		}
+		
 	}
 
 }
