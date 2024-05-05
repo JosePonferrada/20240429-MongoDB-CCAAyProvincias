@@ -3,6 +3,7 @@ package ccaaYProvincias;
 import javax.swing.JFrame;
 
 import ccaaYProvincias.utils.Apariencia;
+import ccaaYProvincias.view.PanelConSplit;
 
 public class Principal extends JFrame {
 
@@ -34,6 +35,8 @@ public class Principal extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		
+		PanelConSplit panelSplit = new PanelConSplit();
+		this.getContentPane().add(panelSplit);
 	
 	}
 

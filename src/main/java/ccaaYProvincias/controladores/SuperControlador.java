@@ -20,7 +20,7 @@ public class SuperControlador {
 		this.db_collection_name = db_collection_name;
 	}
 
-    public MongoCollection<Document> getCollection() {
+    private MongoCollection<Document> getCollection() {
     	// Mongodb creando la cadena de conexión.
         String client_url = "mongodb://" + host_name + ":" + port_no + "/" + db_name;
         MongoClientURI uri = new MongoClientURI(client_url);
